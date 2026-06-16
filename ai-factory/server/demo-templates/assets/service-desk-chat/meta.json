@@ -1,0 +1,14 @@
+{
+  "id": "service-desk-chat",
+  "title": "服务台问答",
+  "description": "适合客服助手、服务台问答、工单咨询场景。",
+  "useCases": ["客服助手", "内部支持", "工单咨询"],
+  "avoidCases": ["企业门户", "数据看板"],
+  "visualStyle": ["assistant", "support", "panel"],
+  "layoutStyle": ["chat-two-pane", "history", "context-sidebar"],
+  "tone": ["helpful", "calm"],
+  "density": "medium",
+  "preferredOutputs": ["chat", "qa-panel"],
+  "previewFile": "preview.html",
+  "promptSeed": "做一个服务台问答工作台，突出会话历史、消息流、推荐问题和工单上下文。"
+}

@@ -1,0 +1,29 @@
+[
+  {
+    "id": "ops-center-starter",
+    "surface": "demo",
+    "title": "运营后台",
+    "summary": "工作台、列表、详情、表单一体化后台演示",
+    "prompt": "做一个运营管理中心，包含工作台、任务列表、详情页、处理表单和统计卡片，要求商务风格、信息密度高、真实字段与状态。",
+    "tags": ["dashboard", "admin", "business"],
+    "qualityScore": 90
+  },
+  {
+    "id": "service-desk-starter",
+    "surface": "demo",
+    "title": "服务台问答",
+    "summary": "会话历史、消息流、推荐问题和工单上下文",
+    "prompt": "做一个服务台问答工作台，包含会话历史、消息流、推荐问题、工单上下文和客服处理视角。",
+    "tags": ["chat", "support", "assistant"],
+    "qualityScore": 88
+  },
+  {
+    "id": "campaign-landing-starter",
+    "surface": "demo",
+    "title": "活动专题页",
+    "summary": "首屏视觉、亮点介绍、议程说明、报名转化和 FAQ",
+    "prompt": "做一个活动着陆页，突出首屏视觉、亮点介绍、议程说明、报名转化和 FAQ，整体更有营销和专题感。",
+    "tags": ["landing", "campaign", "hero"],
+    "qualityScore": 87
+  }
+]

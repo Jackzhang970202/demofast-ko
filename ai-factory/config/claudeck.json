@@ -1,0 +1,24 @@
+{
+  "wsUrl": "ws://127.0.0.1:9009",
+  "apiUrl": "http://127.0.0.1:9009",
+  "authToken": "",
+  "timeout": 1200000,
+  "reconnectInterval": 1000,
+  "maxReconnectAttempts": 10,
+  "agents": {
+    "pm": "pm-agent",
+    "uiue": "uiue-agent",
+    "architect": "architect-agent",
+    "developer": "developer-agent"
+  },
+  "workflows": {
+    "specGeneration": "spec-generation",
+    "codeGeneration": "code-generation"
+  },
+  "timeouts": {
+    "pm": 1200000,
+    "uiue": 1200000,
+    "architect": 1200000,
+    "developer": 2400000
+  }
+}

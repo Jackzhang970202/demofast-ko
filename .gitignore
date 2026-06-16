@@ -1,0 +1,49 @@
+# dependencies
+node_modules/
+**/node_modules/
+
+# build output
+.next/
+**/.next/
+out/
+dist/
+build/
+coverage/
+
+# runtime data
+data/
+**/data/
+*.db
+*.sqlite
+*.sqlite3
+*.log
+
+# archives
+*.zip
+
+# environment
+.env
+.env.*
+!.env.example
+
+# editor / system
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# local temp
+.tmp/
+tmp/
+.cache/
+
+# package manager logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# optional subprojects
+# claudeck-main/
+server/ui-ux/
+open-design-main/

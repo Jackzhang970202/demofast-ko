@@ -1,0 +1,14 @@
+{
+  "id": "ops-center",
+  "title": "运营管理中心",
+  "description": "适合后台运营、项目管理、任务处理与协同场景。",
+  "useCases": ["运营后台", "项目管理", "内部协同"],
+  "avoidCases": ["活动专题页", "聊天助手"],
+  "visualStyle": ["business", "dashboard", "clean"],
+  "layoutStyle": ["sidebar", "workspace", "cards"],
+  "tone": ["professional", "steady"],
+  "density": "high",
+  "preferredOutputs": ["dashboard", "list-detail-form"],
+  "previewFile": "preview.html",
+  "promptSeed": "做一个运营管理中心，突出待办处理、看板总览、列表详情联动和真实表单操作。"
+}

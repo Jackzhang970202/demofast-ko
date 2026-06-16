@@ -1,0 +1,14 @@
+{
+  "id": "campaign-landing",
+  "title": "活动着陆页",
+  "description": "适合活动专题、招商推广、会务报名与营销落地页。",
+  "useCases": ["活动专题", "营销落地", "会务报名"],
+  "avoidCases": ["后台管理", "客服助手"],
+  "visualStyle": ["hero", "marketing", "sections"],
+  "layoutStyle": ["single-page", "anchor-nav", "hero-sections"],
+  "tone": ["bold", "focused"],
+  "density": "medium",
+  "preferredOutputs": ["landing-page", "hero-sections"],
+  "previewFile": "preview.html",
+  "promptSeed": "做一个活动着陆页，突出首屏视觉、亮点介绍、议程说明、报名转化和 FAQ。"
+}

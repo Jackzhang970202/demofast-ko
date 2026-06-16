@@ -1,0 +1,162 @@
+/**
+ * Claudeck 嵌入模式样式
+ * 用于隐藏非对话区域，只显示聊天界面
+ */
+
+/* 嵌入模式：隐藏侧边栏 */
+.embed-chat-only #sidebar,
+.embed-chat-only .sidebar,
+.embed-chat-only [data-testid="sidebar"] {
+  display: none !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 嵌入模式：隐藏顶部栏 */
+.embed-chat-only #header,
+.embed-chat-only .header,
+.embed-chat-only [data-testid="header"] {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 嵌入模式：隐藏底部栏 */
+.embed-chat-only #footer,
+.embed-chat-only .footer,
+.embed-chat-only [data-testid="footer"] {
+  display: none !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 嵌入模式：隐藏侧面板 */
+.embed-chat-only #side-panel,
+.embed-chat-only .side-panel,
+.embed-chat-only [data-testid="side-panel"] {
+  display: none !important;
+  width: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 嵌入模式：调整主内容区 */
+.embed-chat-only #main,
+.embed-chat-only .main,
+.embed-chat-only [data-testid="main"] {
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 嵌入模式：欢迎态与空白占位 */
+.embed-chat-only .whaly-placeholder,
+.embed-chat-only #welcome-overlay,
+.embed-chat-only claudeck-welcome-overlay {
+  display: none !important;
+}
+
+/* 嵌入模式：调整消息区域 */
+.embed-chat-only #messages,
+.embed-chat-only .messages,
+.embed-chat-only [data-testid="messages"] {
+  height: calc(100vh - 64px) !important;
+  padding: 4px 10px 2px !important;
+  margin: 0 !important;
+  overflow-y: auto !important;
+  background: #fff !important;
+}
+
+/* 嵌入模式：调整输入区域 */
+.embed-chat-only .input-bar {
+  position: relative !important;
+  padding: 0 10px 4px !important;
+  margin: 0 !important;
+  gap: 0 !important;
+  background: #fff !important;
+  border-top: 0 !important;
+}
+
+.embed-chat-only .input-textarea-wrap {
+  position: relative !important;
+}
+
+.embed-chat-only #message-input {
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+  padding: 12px 52px 8px 14px !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.embed-chat-only .send-history-group {
+  position: absolute !important;
+  right: 14px !important;
+  bottom: 10px !important;
+  z-index: 3 !important;
+  margin: 0 !important;
+}
+
+.embed-chat-only #send-btn,
+.embed-chat-only #stop-btn {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+}
+
+.embed-chat-only #history-btn {
+  display: none !important;
+}
+
+.embed-chat-only .chat-area-main {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+}
+
+.embed-chat-only #messages.messages {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+}
+
+/* 嵌入模式：调整整体背景 */
+.embed-chat-only body {
+  background: #1a1a2e !important;
+}
+
+/* 嵌入模式：移除边框和阴影 */
+.embed-chat-only * {
+  box-shadow: none !important;
+}
+
+/* 嵌入模式：隐藏辅助按钮 */
+.embed-chat-only .floating-buttons,
+.embed-chat-only .quick-actions,
+.embed-chat-only [data-testid="floating-buttons"] {
+  display: none !important;
+}
+
+/* 嵌入模式：紧凑的消息样式 */
+.embed-chat-only .message {
+  padding: 8px 12px !important;
+  margin: 4px 0 !important;
+}
+
+/* 嵌入模式：调整字体大小 */
+.embed-chat-only .message-content {
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+}
+
+/* 嵌入模式：隐藏不必要的装饰 */
+.embed-chat-only .decorative,
+.embed-chat-only .background-pattern,
+.embed-chat-only .gradient-overlay {
+  display: none !important;
+}

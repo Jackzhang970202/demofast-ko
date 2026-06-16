@@ -1,0 +1,1092 @@
+/* ── Chat Area ────────────────────────────────────────── */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  min-width: 0;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+.chat-area-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 28px 24px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Load-more indicator (lazy loading) ─────────────── */
+.load-more-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.load-more-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: load-more-spin 0.6s linear infinite;
+}
+
+@keyframes load-more-spin {
+  to { transform: rotate(360deg); }
+}
+
+.messages:empty::after {
+  content: "";
+  display: none;
+}
+
+/* Whaly mascot empty state */
+.whaly-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  gap: 16px;
+  opacity: 0.7;
+  user-select: none;
+  animation: float 4s ease-in-out infinite;
+}
+
+.whaly-placeholder img {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 8px 24px rgba(51, 209, 122, 0.08));
+  transition: filter 0.3s;
+}
+
+.whaly-placeholder:hover img {
+  filter: drop-shadow(0 8px 32px rgba(51, 209, 122, 0.15));
+}
+
+.whaly-placeholder .whaly-text {
+  color: var(--text-dim);
+  font-size: 14px;
+  font-family: var(--font-display);
+  text-align: center;
+  letter-spacing: 0.04em;
+  font-weight: 500;
+}
+
+.whaly-placeholder .whaly-hint {
+  color: var(--text-dim);
+  font-size: 11px;
+  font-family: var(--font-sans);
+  opacity: 0.5;
+}
+
+/* ── Messages ─────────────────────────────────────────── */
+.msg {
+  max-width: var(--chat-max-w);
+  width: 100%;
+  margin: 0 auto;
+  animation: fadeInUp 0.25s var(--ease-out-expo);
+  animation-fill-mode: both;
+}
+
+.msg-user {
+  background: var(--user-dim);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--user);
+  border-radius: var(--radius-md);
+  padding: 0;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+
+.msg-user:hover {
+  border-color: rgba(123,155,245,0.2);
+}
+
+.msg-user-label {
+  display: block;
+  padding: 5px 14px;
+  font-size: 10px;
+  font-weight: 700;
+  font-family: var(--font-display);
+  letter-spacing: 0.12em;
+  color: var(--user);
+  background: var(--user-dim);
+  border-bottom: 1px solid var(--border-subtle);
+  user-select: none;
+  text-transform: uppercase;
+}
+
+.msg-user-files {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 8px 14px 0;
+}
+
+.msg-user-file-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--purple);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  max-width: 300px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  direction: rtl;
+  text-align: left;
+  transition: all 0.15s;
+}
+
+.msg-user-file-tag:hover {
+  border-color: var(--purple);
+  background: var(--purple-dim);
+}
+
+.msg-user-file-tag::before {
+  content: "\1F4CE";
+  font-size: 10px;
+  direction: ltr;
+}
+
+.msg-user-body {
+  display: block;
+  padding: 10px 14px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: var(--font-sans);
+}
+
+html[data-theme="light"] .msg-user {
+  border-color: var(--border);
+  border-left-color: var(--user);
+}
+
+.msg-assistant {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.msg-assistant .text-content {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: var(--font-sans);
+}
+
+/* ── Typography — Headings ───────────────────────────── */
+.msg-assistant .text-content .md-h1,
+.msg-assistant .text-content .md-h2,
+.msg-assistant .text-content .md-h3,
+.msg-assistant .text-content .md-h4 {
+  font-family: var(--font-display);
+  color: var(--text);
+  letter-spacing: 0.01em;
+  margin-top: 16px;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.msg-assistant .text-content .md-h1 {
+  font-size: 20px;
+  font-weight: 700;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+  background: linear-gradient(90deg, var(--text), var(--text-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.msg-assistant .text-content .md-h2 {
+  font-size: 17px;
+  font-weight: 700;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.msg-assistant .text-content .md-h3 {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.msg-assistant .text-content .md-h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+/* ── Typography — Paragraphs & Text ──────────────────── */
+.msg-assistant .text-content p {
+  margin-bottom: 8px;
+}
+
+.msg-assistant .text-content strong {
+  font-weight: 700;
+  color: var(--text);
+}
+
+.msg-assistant .text-content em {
+  font-style: italic;
+  color: var(--text);
+}
+
+.msg-assistant .text-content del {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+}
+
+/* ── Typography — Inline Code ────────────────────────── */
+.msg-assistant .text-content code.inline-code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-tertiary);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--purple);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Legacy inline code (without .inline-code class) */
+.msg-assistant .text-content code:not([class*="language-"]):not(.inline-code):not(.hljs) {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  background: var(--bg-tertiary);
+  padding: 2px 7px;
+  border-radius: 4px;
+  color: var(--purple);
+  border: 1px solid var(--border-subtle);
+}
+
+/* ── Typography — Links ──────────────────────────────── */
+.msg-assistant .text-content .md-link {
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s;
+}
+
+.msg-assistant .text-content .md-link:hover {
+  border-bottom-color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* ── Typography — Horizontal Rule ────────────────────── */
+.msg-assistant .text-content .md-hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 20px 0;
+  position: relative;
+}
+
+/* ── Typography — Blockquotes ────────────────────────── */
+.msg-assistant .text-content .md-blockquote {
+  margin: 12px 0;
+  padding: 10px 18px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-dim);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  color: var(--text-secondary);
+  font-style: italic;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+/* ── Typography — Lists ──────────────────────────────── */
+.msg-assistant .text-content .md-list {
+  margin: 8px 0;
+  padding-left: 24px;
+  line-height: 1.7;
+}
+
+.msg-assistant .text-content .md-list li {
+  margin-bottom: 3px;
+  padding-left: 4px;
+}
+
+.msg-assistant .text-content .md-ul {
+  list-style-type: disc;
+}
+
+.msg-assistant .text-content .md-ul li::marker {
+  color: var(--accent);
+}
+
+.msg-assistant .text-content .md-ol {
+  list-style-type: decimal;
+}
+
+.msg-assistant .text-content .md-ol li::marker {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+
+/* ── Typography — Tables ─────────────────────────────── */
+.msg-assistant .text-content .md-table-wrap {
+  margin: 12px 0;
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.msg-assistant .text-content .md-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12.5px;
+  font-family: var(--font-mono);
+}
+
+.msg-assistant .text-content .md-table th {
+  background: var(--bg-tertiary);
+  color: var(--text);
+  font-weight: 600;
+  padding: 10px 14px;
+  border-bottom: 2px solid var(--border);
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--font-display);
+}
+
+.msg-assistant .text-content .md-table td {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text);
+}
+
+.msg-assistant .text-content .md-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.msg-assistant .text-content .md-table tbody tr {
+  transition: background 0.15s;
+}
+
+.msg-assistant .text-content .md-table tbody tr:hover {
+  background: var(--accent-dim);
+}
+
+/* ── Code Blocks ─────────────────────────────────────── */
+.code-block-wrapper {
+  position: relative;
+  margin: 12px 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--bg-deep);
+  transition: border-color 0.2s;
+}
+
+.code-block-wrapper:hover {
+  border-color: rgba(255,255,255,0.06);
+}
+
+.code-block-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  background: var(--bg-tertiary);
+  border-bottom: 1px solid var(--border);
+  min-height: 32px;
+}
+
+.code-lang-label {
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  user-select: none;
+}
+
+.msg-assistant .text-content pre {
+  background: var(--bg-deep);
+  border: none;
+  border-radius: 0;
+  padding: 16px 18px;
+  overflow-x: auto;
+  margin: 0;
+  font-size: 12.5px;
+  line-height: 1.65;
+  tab-size: 2;
+}
+
+/* Pre blocks that aren't inside a wrapper (direct pre) */
+.msg-assistant .text-content > pre {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  margin: 12px 0;
+}
+
+.msg-assistant .text-content pre code {
+  background: none;
+  padding: 0;
+  border: none;
+  color: var(--text);
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.65;
+}
+
+/* ── Code Copy Button ──────────────────────────────────── */
+/* When inside a header, position is flow-based */
+.code-block-header .code-copy-btn {
+  position: static;
+  opacity: 0;
+  padding: 3px 10px;
+  font-size: 10px;
+  font-family: var(--font-display);
+  color: var(--text-dim);
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-left: auto;
+}
+
+/* When no header exists, position absolutely */
+.code-block-wrapper > .code-copy-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 3px 10px;
+  font-size: 10px;
+  font-family: var(--font-display);
+  color: var(--text-dim);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.2s var(--ease-smooth);
+  z-index: 2;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.code-block-wrapper:hover .code-copy-btn {
+  opacity: 1;
+}
+
+.code-copy-btn:hover {
+  color: var(--accent);
+  background: var(--bg-secondary);
+  border-color: var(--accent);
+}
+
+.code-copy-btn.copied {
+  color: var(--success);
+  border-color: var(--success);
+  opacity: 1;
+}
+
+/* ── Tool Indicators ──────────────────────────────────── */
+.tool-indicator {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 14px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-md);
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-secondary);
+  margin: 4px 0;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+  animation: fadeInUp 0.2s var(--ease-out-expo);
+  animation-fill-mode: both;
+}
+
+.tool-indicator:hover         { border-color: var(--accent); background: rgba(51,209,122,0.03); }
+.tool-indicator .tool-name    { font-weight: 600; color: var(--accent); font-family: var(--font-display); letter-spacing: 0.02em; }
+.tool-indicator .tool-detail  { flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-family: var(--font-sans); }
+
+/* Spinner for running tools */
+.tool-spinner {
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--border);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: toolSpin 0.6s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes toolSpin {
+  to { transform: rotate(360deg); }
+}
+
+.tool-status-icon {
+  font-weight: 700;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* Running state — pulsing left border */
+.tool-indicator.tool-running {
+  border-left-color: var(--accent);
+  animation: fadeInUp 0.2s var(--ease-out-expo), toolRunPulse 1.5s ease-in-out infinite;
+  animation-fill-mode: both;
+}
+
+@keyframes toolRunPulse {
+  0%, 100% { border-left-color: var(--accent); }
+  50% { border-left-color: var(--accent-solid); }
+}
+
+/* Done state */
+.tool-indicator.tool-done {
+  border-left-color: var(--success);
+  opacity: 0.85;
+}
+
+/* Error state */
+.tool-indicator.tool-error {
+  border-left-color: var(--error);
+}
+
+/* Result preview shown inline under the tool detail */
+.tool-result-preview {
+  width: 100%;
+  font-size: 10px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-top: 2px;
+  padding-top: 4px;
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-sans);
+}
+
+.tool-result-preview.error {
+  color: var(--error);
+}
+
+.tool-indicator .tool-body {
+  display: none;
+  margin-top: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+  white-space: pre-wrap;
+  word-break: break-all;
+  font-size: 11px;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.tool-indicator.expanded .tool-body { display: block; }
+.tool-indicator.expanded .tool-result-preview { display: none; }
+
+/* ── Status & Thinking ────────────────────────────────── */
+.status {
+  font-size: 12px;
+  font-family: var(--font-sans);
+  color: var(--text-dim);
+  text-align: center;
+  padding: 6px;
+  max-width: var(--chat-max-w);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.status.error { color: var(--error); }
+
+/* Memory indicator — collapsible block showing injected memories */
+.memory-indicator {
+  max-width: var(--chat-max-w);
+  width: 100%;
+  margin: 4px auto;
+  font-family: var(--font-mono);
+  font-size: 11px;
+}
+
+.memory-indicator-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  color: var(--text-dim);
+  cursor: pointer;
+  border-radius: var(--radius);
+  user-select: none;
+}
+
+.memory-indicator-header:hover {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+}
+
+.memory-indicator-icon {
+  font-size: 12px;
+}
+
+.memory-indicator-toggle {
+  margin-left: auto;
+  font-size: 9px;
+  opacity: 0.5;
+}
+
+.memory-indicator-list {
+  padding: 4px 8px 4px 28px;
+}
+
+.memory-indicator-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 3px 0;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+.memory-indicator-cat {
+  flex-shrink: 0;
+  font-size: 9px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--bg-tertiary);
+  color: var(--text-dim);
+}
+
+.memory-indicator-cat.convention { color: var(--accent); }
+.memory-indicator-cat.decision { color: var(--success); }
+.memory-indicator-cat.warning { color: var(--warning); }
+.memory-indicator-cat.discovery { color: var(--text-secondary); }
+
+.memory-indicator-content {
+  flex: 1;
+  word-break: break-word;
+}
+
+.thinking-bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  max-width: var(--chat-max-w);
+  width: 100%;
+  margin: 0 auto;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
+  border-radius: var(--radius-md);
+  font-size: 12px;
+  color: var(--text-secondary);
+  animation: fadeInUp 0.25s var(--ease-out-expo);
+}
+
+.thinking-dot-container {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+
+.thinking-dot {
+  width: 5px;
+  height: 5px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: thinkingPulse 1.4s infinite;
+}
+
+.thinking-dot:nth-child(2) { animation-delay: 0.2s; }
+.thinking-dot:nth-child(3) { animation-delay: 0.4s; }
+
+.thinking-label {
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ── Input Bar ────────────────────────────────────────── */
+/* ── Waiting for input indicator ──────────────────────── */
+.input-waiting {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 24px;
+  max-width: calc(var(--chat-max-w) + 48px);
+  width: 100%;
+  margin: 0 auto;
+  font-family: var(--font-sans);
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: 500;
+  animation: fadeInUp 0.3s var(--ease-out-expo);
+}
+
+.input-waiting.hidden {
+  display: none;
+}
+
+.input-waiting-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+  animation: inputWaitingPulse 1.5s ease-in-out infinite;
+}
+
+.input-waiting-text {
+  letter-spacing: 0.02em;
+}
+
+@keyframes inputWaitingPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent); }
+  50% { opacity: 0.3; box-shadow: none; }
+}
+
+/* Input bar glow when waiting for response */
+.input-bar.waiting-for-input textarea {
+  border-color: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  animation: inputBarPulse 2s ease-in-out infinite;
+}
+
+@keyframes inputBarPulse {
+  0%, 100% { box-shadow: 0 0 8px var(--accent-glow); }
+  50% { box-shadow: 0 0 20px var(--accent-glow); }
+}
+
+.input-bar {
+  position: relative;
+  padding: 14px 24px 10px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 8px;
+  align-items: flex-end;
+  max-width: calc(var(--chat-max-w) + 48px);
+  width: 100%;
+  margin: 0 auto;
+}
+
+.input-bar > .send-history-group {
+  align-self: flex-end;
+  margin-bottom: 24px;
+}
+
+/* Gradient fade above input */
+.input-bar::before {
+  content: "";
+  position: absolute;
+  top: -32px;
+  left: 0;
+  right: 0;
+  height: 32px;
+  background: linear-gradient(to top, var(--bg), transparent);
+  pointer-events: none;
+}
+
+.input-textarea-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.input-textarea-wrap textarea {
+  width: 100%;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 12px 16px;
+  color: var(--accent);
+  font-size: 13px;
+  font-family: var(--font-mono);
+  resize: none;
+  outline: none;
+  max-height: 200px;
+  line-height: 1.5;
+  transition: all 0.2s var(--ease-smooth);
+  caret-color: var(--accent);
+  box-sizing: border-box;
+}
+
+.input-textarea-wrap textarea:focus {
+  border-color: var(--accent);
+  box-shadow: var(--glow), 0 0 0 1px var(--accent-dim);
+}
+
+.input-textarea-wrap textarea::placeholder {
+  color: var(--text-dim);
+  font-style: normal;
+  font-family: var(--font-sans);
+}
+
+.input-bar button {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+/* Send button */
+#send-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--accent-solid);
+  color: #000;
+  position: relative;
+  box-shadow: 0 0 12px rgba(46, 194, 126, 0.2);
+}
+
+#send-btn::after {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 50%;
+  border: 1.5px solid var(--accent);
+  opacity: 0;
+  transition: opacity 0.2s, transform 0.2s;
+  transform: scale(0.95);
+}
+
+#send-btn:hover {
+  background: var(--accent);
+  box-shadow: 0 0 20px rgba(46, 194, 126, 0.35), var(--glow-strong);
+  transform: scale(1.05);
+}
+
+#send-btn:hover::after {
+  opacity: 0.4;
+  transform: scale(1);
+}
+
+#send-btn:active {
+  transform: scale(0.93);
+  box-shadow: 0 0 8px rgba(46, 194, 126, 0.15);
+}
+
+#send-btn:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+#send-btn:disabled::after { display: none; }
+
+/* Stop button */
+#stop-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--error);
+  color: #fff;
+  box-shadow: 0 0 12px rgba(237, 51, 59, 0.2);
+}
+
+#stop-btn:hover {
+  box-shadow: 0 0 20px rgba(237, 51, 59, 0.35);
+  transform: scale(1.05);
+}
+
+#stop-btn:active {
+  transform: scale(0.93);
+}
+
+/* ── Input Meta Labels ────────────────────────────────── */
+.input-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+  margin-left: auto;
+}
+
+.input-meta-item {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--text-dim);
+  opacity: 0.55;
+  letter-spacing: 0.3px;
+}
+
+.input-meta-sep {
+  font-size: 8px;
+  color: var(--text-dim);
+  opacity: 0.25;
+}
+
+.input-meta-shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.input-meta-kbd {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--text-dim);
+  opacity: 0.4;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 5px;
+  line-height: 16px;
+  cursor: pointer;
+  transition: all 0.2s var(--ease-smooth);
+}
+
+.input-meta-kbd:hover {
+  opacity: 0.9;
+  color: var(--accent);
+  border-color: var(--accent);
+  background: var(--accent-dim);
+}
+
+/* ── Mermaid Diagrams ───────────────────────────────── */
+.mermaid-container {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  margin: 10px 0;
+  overflow-x: auto;
+  text-align: center;
+}
+
+.mermaid-container svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ── Keyboard Shortcut Badges ────────────────────────── */
+.kbd {
+  display: inline-block;
+  padding: 2px 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+.shortcuts-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shortcuts-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 13px;
+  font-family: var(--font-sans);
+}
+
+.shortcuts-table tr:last-child td {
+  border-bottom: none;
+}
+
+.shortcuts-table td:first-child {
+  white-space: nowrap;
+  width: 140px;
+}
+
+.shortcuts-table td:last-child {
+  color: var(--text-secondary);
+}
+
+/* ── Fork Button ─────────────────────────────────────── */
+.fork-btn {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  opacity: 0;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm, 4px);
+  padding: 4px 6px;
+  cursor: pointer;
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  transition: opacity 0.15s, background 0.15s, color 0.15s;
+  z-index: 2;
+}
+
+.msg-assistant,
+.msg:has(.fork-btn) {
+  position: relative;
+}
+
+.msg-assistant:hover > .fork-btn,
+.msg:hover > .fork-btn {
+  opacity: 1;
+}
+
+.fork-btn:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.fork-btn.fork-loading {
+  opacity: 1;
+  pointer-events: none;
+  color: var(--text-secondary);
+}
+
+.fork-btn.fork-loading svg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
